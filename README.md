@@ -1,4 +1,4 @@
-⚠️⚠️⚠️TODO: optionalize `allowNoProps` ⚠️⚠️⚠️
+⚠️⚠️⚠️TODO: https://www.notion.so/239431d647c04f70bfdf2837b039fd6c ⚠️⚠️⚠️
 
 # eslint-plugin-react-memo
 
