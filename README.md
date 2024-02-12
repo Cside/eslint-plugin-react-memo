@@ -1,3 +1,4 @@
+a 
 # eslint-plugin-react-memo
 
 Enforce that all function components are wrapped in `React.memo`, and that all props and deps are wrapped in `useMemo`/`useCallback` so they don’t break memo.
