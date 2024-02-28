@@ -1,4 +1,10 @@
-⚠️⚠️⚠️TODO: https://www.notion.so/239431d647c04f70bfdf2837b039fd6c ⚠️⚠️⚠️
+- 直したところ（ [差分](https://github.com/Cside/eslint-plugin-react-memo/compare/49b926..HEAD) ）
+  - ⭐⭐無引数の場合は警告しない
+  - ⭐Component じゃないやつを誤判定しちゃう問題
+  - named export したやつを検出しない問題
+- TODO: https://www.notion.so/239431d647c04f70bfdf2837b039fd6c ⚠️⚠️⚠️
+
+---------------------
 
 # eslint-plugin-react-memo
 
