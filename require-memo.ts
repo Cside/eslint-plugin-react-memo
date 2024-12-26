@@ -2,6 +2,9 @@ import { Rule } from "eslint";
 import * as ESTree from "estree";
 
 const componentNameRegex = /^[A-Z]/;
+const isComponentName = (name: string) =>
+  !["Boolean", "Number", "String", "BigInt", "Symbol"].includes(name) &&
+  componentNameRegex.test(name);
 
 function isMemoCallExpression(node: Rule.Node) {
   if (node.type !== "CallExpression") return false;
@@ -47,7 +50,7 @@ function checkFunction(
   if (currentNode.type === "VariableDeclarator") {
     const { id } = currentNode;
     if (id.type === "Identifier") {
-      if (componentNameRegex.test(id.name)) {
+      if (isComponentName(id.name)) {
         context.report({ node, messageId: "memo-required" });
       }
     }
@@ -55,7 +58,7 @@ function checkFunction(
     node.type === "FunctionDeclaration" &&
     ["Program", "ExportNamedDeclaration"].includes(currentNode.type)
   ) {
-    if (node.id !== null && componentNameRegex.test(node.id.name)) {
+    if (node.id !== null && isComponentName(node.id.name)) {
       context.report({ node, messageId: "memo-required" });
     } else {
       // 関数名が大文字始まりでない場合、ファイル名を見て判断する。
