@@ -3,6 +3,10 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 
 var componentNameRegex$1 = /^[A-Z]/;
+var isComponentName = function (name) {
+    return !["Boolean", "Number", "String", "BigInt", "Symbol"].includes(name) &&
+        componentNameRegex$1.test(name);
+};
 function isMemoCallExpression(node) {
     if (node.type !== "CallExpression")
         return false;
@@ -33,14 +37,14 @@ function checkFunction(context, node) {
     if (currentNode.type === "VariableDeclarator") {
         var id = currentNode.id;
         if (id.type === "Identifier") {
-            if (componentNameRegex$1.test(id.name)) {
+            if (isComponentName(id.name)) {
                 context.report({ node: node, messageId: "memo-required" });
             }
         }
     }
     else if (node.type === "FunctionDeclaration" &&
         ["Program", "ExportNamedDeclaration"].includes(currentNode.type)) {
-        if (node.id !== null && componentNameRegex$1.test(node.id.name)) {
+        if (node.id !== null && isComponentName(node.id.name)) {
             context.report({ node: node, messageId: "memo-required" });
         }
     }
